@@ -29,6 +29,5 @@ public class RSAUtil {
 	    PrivateKey privateKey=new RSAPrivateKeyImpl();
 	    
 	    ObjectInputStream obj=new ObjectInputStream(new FileInputStream(PRIVATE_KEY_FILE));
-		byte[] 
 	}
 }
