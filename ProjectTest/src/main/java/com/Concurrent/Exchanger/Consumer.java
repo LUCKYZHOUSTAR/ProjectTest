@@ -34,7 +34,6 @@ public class Consumer implements Runnable {
 	 * processes ten events, it uses the exchanger object to synchronize with 
 	 * the producer. It sends to the producer an empty buffer and receives a buffer with ten events
 	 */
-	@Override
 	public void run() {
 		int cycle=1;
 		
