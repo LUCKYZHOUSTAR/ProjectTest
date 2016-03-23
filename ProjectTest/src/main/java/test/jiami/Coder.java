@@ -6,6 +6,7 @@ import java.security.MessageDigest;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
+
 public class Coder {
 	public static final String KEY_SHA = "SHA";
 	public static final String KEY_MD5 = "MD5";
@@ -58,4 +59,10 @@ public class Coder {
 		sha.update(data);
 		return sha.digest();
 	}
+	
+	public static void main(String[] args) throws Exception {
+	    String res="我爱我加asldkfas ";
+        System.out.println(decryptBASE64(res));
+        System.out.println(encryptBASE64(decryptBASE64(res)));
+    }
 }

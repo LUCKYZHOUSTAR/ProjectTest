@@ -23,7 +23,7 @@ public class Main {
 	public static void main(String[] args) {
 
 		// Create a ScheduledThreadPoolExecutor
-		ScheduledExecutorService executor=(ScheduledExecutorService)Executors.newScheduledThreadPool(1);
+		ScheduledExecutorService executor=(ScheduledExecutorService)Executors.newScheduledThreadPool(2);
 		
 		System.out.printf("Main: Starting at: %s\n",new Date());
 		
