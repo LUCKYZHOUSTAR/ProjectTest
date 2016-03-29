@@ -1,0 +1,43 @@
+/**     
+ * @FileName: URLEncoder.java   
+ * @Package:network.URL   
+ * @Description: 
+ * @author: LUCKY    
+ * @date:2016年3月29日 上午8:57:40   
+ * @version V1.0     
+ */
+package network.URL;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+
+/**  
+ * @ClassName: URLEncoder   
+ * @Description: 
+ * @author: LUCKY  
+ * @date:2016年3月29日 上午8:57:40     
+ */
+public class URLEncoderTest {
+
+    public static void main(String[] args) {
+        try {
+            
+            System.out.println(URLEncoder.encode("This string has spaces", "UTF-8"));
+            System.out.println(URLEncoder.encode("This*string*has*asterisks", "UTF-8"));
+            System.out.println(URLEncoder.encode("This%string%has%percent%signs", "UTF-8"));
+            System.out.println(URLEncoder.encode("This+string+has+pluses", "UTF-8"));
+            System.out.println(URLEncoder.encode("This/string/has/slashes", "UTF-8"));
+            System.out.println(URLEncoder.encode("This\"string\"has\"quote\"marks", "UTF-8"));
+            System.out.println(URLEncoder.encode("This:string:has:colons", "UTF-8"));
+            System.out.println(URLEncoder.encode("This~string~has~tildes", "UTF-8"));
+            System.out.println(URLEncoder.encode("This(string)has(parentheses)", "UTF-8"));
+            System.out.println(URLEncoder.encode("This.string.has.periods", "UTF-8"));
+            System.out.println(URLEncoder.encode("This=string=has=equals=signs", "UTF-8"));
+            System.out.println(URLEncoder.encode("This&string&has&ampersands", "UTF-8"));
+            System.out.println(URLEncoder.encode("Thiséstringéhasénon-ASCII characters", "UTF-8"));
+        } catch (UnsupportedEncodingException ex) {
+            throw new RuntimeException("Broken VM does not support UTF-8");
+        }
+    }
+}
