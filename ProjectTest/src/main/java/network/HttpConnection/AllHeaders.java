@@ -25,6 +25,7 @@ public class AllHeaders {
         try {
             URL u = new URL("http://www.cafeaulait.org/books/jnp3/examples/15/AllHeaders.java");
             URLConnection uc = u.openConnection();
+            
             for (int j = 1;; j++) {
                 
                 String header = uc.getHeaderField(j);

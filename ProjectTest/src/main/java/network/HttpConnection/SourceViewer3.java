@@ -16,6 +16,7 @@ import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 
 /**  
  * @ClassName: SourceViewer3   
@@ -29,10 +30,20 @@ public class SourceViewer3 {
         for (int i = 0; i < 1; i++) {
             try {
 
-                
                 //Open the URLConnection for reading
-                URL u = new URL("http://www.cafeaulait.org/books/jnp3/examples/15/SourceViewer3.java");
+                URL u = new URL(
+                    "http://www.cafeaulait.org/books/jnp3/examples/15/SourceViewer3.java");
+                URLConnection connection = u.openConnection();
+                connection.setReadTimeout(1000);
+                connection.setDoInput(true);
+                connection.setDoOutput(true);
+//                connection.setRequestMethod("POST");
+                connection.setConnectTimeout(1000);
+                connection.setRequestProperty("Accept", "text/xml,text/javascript,text/html");
+                connection.setRequestProperty("User-Agent", "top-sdk-java");
+                connection.setRequestProperty("Content-Type", "ZH-CN");
                 HttpURLConnection uc = (HttpURLConnection) u.openConnection();
+
                 int code = uc.getResponseCode();
                 String response = uc.getResponseMessage();
                 System.out.println("HTTP/1.x " + code + " " + response);
