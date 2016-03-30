@@ -13,6 +13,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.net.SocketAddress;
 
 /**  
  * @ClassName: DayTimeClient   
@@ -27,10 +28,10 @@ public class DayTimeClient {
         Socket socket = null;
         try {
             InetAddress inetaddress = InetAddress.getLocalHost();
-
             //一旦设置的地址，就进行了连接，如果连接出现异常的话，会跑出exception信息
             socket = new Socket(inetaddress, 8900);
             InputStream in=socket.getInputStream();
+            socket.setTcpNoDelay(true);
             //设置超时的时间
             socket.setSoTimeout(15000000);
             StringBuilder time=new StringBuilder();
