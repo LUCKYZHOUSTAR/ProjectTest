@@ -73,8 +73,6 @@ public class Example {
         }
     }
 
-    
-    
     public static void test3(Comparable[] a, int len) {
         //定义增量后
         for (int group = len / 2; group > 0; group = group / 2) {
@@ -83,19 +81,16 @@ public class Example {
                 //从头开始的那个元素
                 for (int j = i - group; j >= 0; j = j - group) {
                     if (less(a[j + group], a[j])) {
-                        exch(a, j+group, j);
+                        exch(a, j + group, j);
                     }
                 }
             }
         }
     }
 
-    
-    
-    
     public static void main(String[] args) {
         Comparable[] x = { 3, 6, 2, 4, 1, 5, 9, 10, 15, 26, 23 };
-        test3(x, 11);
+        shell_test6(x);
 
         for (Comparable i : x) {
             System.out.println(i);
@@ -127,4 +122,51 @@ public class Example {
             }
         }
     }
+
+    //选择排序，先拿第一个元素与所有的元素进行比较，找到最小的元素后，与第一位的元素进行交换位置
+    public static void test4(Comparable[] a) {
+
+        for (int i = 0; i < a.length; i++) {
+            for (int j = i + 1; j < a.length; j++) {
+                if (less(a[j], a[i])) {
+                    exch(a, i, j);
+                }
+            }
+        }
+    }
+
+    //插入排序，是先把一个位置放置上后，后面的元素是一个一个放置上去的，只要放置上去就是已经排好序的元素
+    public static void test5(Comparable[] a) {
+
+        //第一层循环要放置的元素,但是要从第二个元素开始
+        for (int i = 1; i < a.length; i++) {
+            for (int j = i - 1; j >= 0; j--) {
+                if (less(a[j + 1], a[j])) {
+                    exch(a, j + 1, j);
+                } else {
+                    break;
+                }
+            }
+        }
+    }
+
+    //希尔排序是把变量自缩小来递减，让变量值内交换比较，直到变为1即可
+    public static void shell_test6(Comparable[] a) {
+
+        //5
+        for (int i = a.length / 2; i > 0; i = i / 2) {
+            //5,6,7,8,9,10
+            for (int j = i; j < a.length; j++) {
+                //0,1,2,3,4,5
+                for (int z = j - i; z >= 0; z = z - i) {
+                    if (less(a[z], a[z + i])) {
+                        exch(a, z, z + i);
+                    }
+                }
+            }
+
+        }
+    }
+    
+   
 }
