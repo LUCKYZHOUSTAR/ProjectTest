@@ -8,7 +8,6 @@ public class MySecondJob implements Job {
     public void execute(JobExecutionContext context) {
         try {
             System.out.println(context.getScheduler().getSchedulerName());
-            System.out.println(context.getFireInstanceId());
             System.out.println(context.getJobRunTime());
             System.out.println(context.getJobInstance());
             System.out.println(context.getJobDetail().getDescription());

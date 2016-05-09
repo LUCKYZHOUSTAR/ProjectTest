@@ -9,9 +9,7 @@
 package EffectiveJava.Item8.Collection;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
-import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -27,7 +25,7 @@ import org.junit.Test;
  */
 public class CollectionTest {
 
-    @Test
+    
     public void CollectionTest() {
     }
 

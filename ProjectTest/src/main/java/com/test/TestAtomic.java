@@ -96,9 +96,6 @@ public class TestAtomic {
 		long endNano = System.nanoTime();
 		int sum = count_int;
 		//
-		Assert.assertNotEquals(
-				"sum 等于 threadCount * loopCount,testIntAdd()测试失败", sum,
-				threadCount * loopCount);
 		System.out.println("-------testIntAdd(); 预期两者不相等---------");
 		System.out.println("耗时: " + ((endNano - startNano) / (1000 * 1000))
 				+ "ms");

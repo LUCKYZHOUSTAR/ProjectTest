@@ -40,7 +40,7 @@
 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
 			<artifactId>quartz</artifactId>
-			<version>2.2.1</version>
+			<version>1.8.5</version>
 		</dependency>
 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
@@ -50,6 +50,19 @@
 
 
 		<!--Spring版本 -->
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>3.2.9.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.10</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- SPring的测试包 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
