@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+						http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+						http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+
+	<bean id="jobDetailTest1" class="Quartz.Spring.JobDetailTest1"></bean>
+
+	<!-- 定时机制,每一个job默认会有十个线程来定时操作 -->
+	<bean id="runJobTimer" lazy-init="false" autowire="no"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="runJobTrigger" />
+			</list>
+		</property>
+		<property name="schedulerName" value="chaochao" />
+	</bean>
+
+	<!--Trigger -->
+	<bean id="runJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="exampleJob" />
+		</property>
+		<property name="cronExpression">
+			<!-- 每x min执行一次 -->
+			<value>0/2 * * * * ?</value>
+		</property>
+	</bean>
+
+	
+
+	
+
+	
+
+	<!--第二种实现方式 -->
+	<bean name="exampleJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass" value="Quartz.Spring.exampleJob" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="timeout" value="5" />
+				<entry key="name" value="chaochao" />
+			</map>
+		</property>
+	</bean>
+</beans>
