@@ -21,16 +21,16 @@ public class CyclicBarrierTest {
 
     public static void main(String[] args) {
         CyclicBarrier cyclicBarrier = new CyclicBarrier(3);
-        CyclicBarrier cyclicBarrier2=new CyclicBarrier(3, new Runnable() {
-            
-            @Override
-            public void run() {
-                // TODO Auto-generated method stub
-                System.out.println(Thread.currentThread().getName()+"主任务开始执行");
-            }
-        });
+//        CyclicBarrier cyclicBarrier2=new CyclicBarrier(3, new Runnable() {
+//            
+//            @Override
+//            public void run() {
+//                // TODO Auto-generated method stub
+//                System.out.println(Thread.currentThread().getName()+"主任务开始执行");
+//            }
+//        });
         for(int i=0;i<3;i++){
-            new cyclieTest(cyclicBarrier2).start();
+            new cyclieTest(cyclicBarrier).start();
         }
     }
 
