@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="GBK"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
+	default-autowire="byName">
+	<bean id="testRule" class="com.alipay.zdal.rule.config.beans.AppRule">
+		<property name="masterRule" ref="testRWRule" />
+		<property name="slaveRule" ref="testRWRule" />
+	</bean>
+	
+	<bean id="testRWRule" class="com.alipay.zdal.rule.config.beans.ShardRule">
+		<property name="tableRules">
+			<map>
+				<entry key="ACCMAINTX" value-ref="noTableRule" />
+				<entry key="ACCTXACTION" value-ref="noTableRule" />
+				<entry key="ACMTACIN" value-ref="noTableRule" />
+				<entry key="ACMSUMBAL" value-ref="noTableRule" />
+				<entry key="ACMTACBL" value-ref="noTableRule" />
+				<entry key="ACMTCDDT" value-ref="noTableRule" />
+				<entry key="ACCTXCHANGEFLOW" value-ref="noTableRule" />
+				<entry key="MAINTXSCANTEMP" value-ref="noTableRule" />
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="usrTableRule" class="com.alipay.zdal.rule.config.beans.TableRule"
+		init-method="init">
+		<property name="tbSuffix" value="resetForEachDB:[_0000-_0001]"/>
+		<property name="dbIndexes" value="master_0"/>
+		<property name="dbRuleArray">
+			<list>
+				<value>
+					return com.jiedaibao.acmcore.dao.util.ShardRuleParser.parserDbIndexDev(#USR_NO#);
+				</value>
+			</list>
+		</property>
+		<property name="tbRuleArray">
+			<list>
+				<value>
+					return com.jiedaibao.acmcore.dao.util.ShardRuleParser.parserTbIndexDev(#USR_NO#);
+				</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="noTableRule" class="com.alipay.zdal.rule.config.beans.TableRule"
+		init-method="init">
+		<property name="tbSuffix" value="resetForEachDB:[_0000-_0001]"/>
+		<property name="dbIndexes" value="master_0"/>
+		<property name="dbRuleArray">
+			<list>
+				<value>
+					0
+				</value>
+			</list>
+		</property>
+		<property name="tbRuleArray">
+			<list>
+				<value>
+					0
+				</value>
+			</list>
+		</property>
+	</bean>
+</beans>
