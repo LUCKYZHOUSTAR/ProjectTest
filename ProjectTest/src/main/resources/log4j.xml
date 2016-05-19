@@ -23,7 +23,7 @@
 	</appender>
 	
 	<appender name="root" class="org.apache.log4j.DailyRollingFileAppender">
-		<param name="File" value="${log4j.path}coscore/root.log" />
+		<param name="File" value="${log4j.path}/root.log" />
 		<param name="DatePattern" value="'.'yyyy-MM-dd-HH'.log'" />
 		<param name="Append" value="true" />
 		<param name="Encoding" value="UTF-8" />

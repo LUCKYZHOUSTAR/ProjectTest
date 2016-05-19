@@ -17,6 +17,7 @@ public class TestFifth {
         System.out.println("------------");
         parent2=new Parent2();
         System.out.println(Parent2.a);
+        //在同一类中，父类已经初始化，就可以不用再次初始化了
         System.out.println(child2.b);//访问静态变量也会造成类的初始化
     }
 }

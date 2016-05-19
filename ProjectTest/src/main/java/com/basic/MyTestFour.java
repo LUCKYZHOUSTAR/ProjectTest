@@ -22,6 +22,8 @@ class Parent{
     static{
         System.out.println("Parent static block");
     }
+    
+    static int c=5;
 }
 
 class child extends Parent{
