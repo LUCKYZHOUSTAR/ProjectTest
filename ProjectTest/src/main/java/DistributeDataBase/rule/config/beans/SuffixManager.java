@@ -103,6 +103,7 @@ public class SuffixManager {
 
     protected void parseTwoColumn(String part2, int dbIndexSize) throws TableRule.ParseException {
         Suffix suf = (Suffix) this.listSuffix.get(0);
+        //twoColumnForEachDB
         String[] parts = part2.split(",");
         if (parts.length != 2) {
             throw new TableRule.ParseException("twoColumnForEachDB must have two range");
@@ -137,8 +138,12 @@ public class SuffixManager {
         String type = temp[0].trim();
         suf.setTbType(type);
 
+        //resetForEachDB:
+        //值操作
+        //[_0000-_0001]
         String part2 = temp[1].trim();
         if (TableSuffixTypeEnum.twoColumnForEachDB.getValue().equals(type)) {
+            //传入的值
             parseTwoColumn(part2, dbIndexes.length);
         } else if (TableSuffixTypeEnum.dbIndexForEachDB.getValue().equals(type)) {
             parseDbIndex(part2, dbIndexes.length);

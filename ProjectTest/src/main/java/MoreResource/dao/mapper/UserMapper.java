@@ -5,6 +5,8 @@ package MoreResource.dao.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import MoreResource.dao.domain.User;
 
 /** 
@@ -17,4 +19,7 @@ import MoreResource.dao.domain.User;
 public interface UserMapper {
 
     List<User> queryUserList();
+    
+    User queryUserByUserNo(@Param("userName") String userName);
+    int insertUser(User user);
 }

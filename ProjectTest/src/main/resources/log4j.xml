@@ -22,19 +22,19 @@
 		</layout>
 	</appender>
 	
-	<appender name="root" class="org.apache.log4j.DailyRollingFileAppender">
-		<param name="File" value="${log4j.path}/root.log" />
-		<param name="DatePattern" value="'.'yyyy-MM-dd-HH'.log'" />
-		<param name="Append" value="true" />
-		<param name="Encoding" value="UTF-8" />
-		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="%5p [%d{yyyy/MM/dd HH:mm:ss,SSS}] %t %c{1}.%M(line:%L): %m%n" />
-		</layout>
-	</appender>
+<!-- 	<appender name="root" class="org.apache.log4j.DailyRollingFileAppender"> -->
+<!-- 		<param name="File" value="${log4j.path}/root.log" /> -->
+<!-- 		<param name="DatePattern" value="'.'yyyy-MM-dd-HH'.log'" /> -->
+<!-- 		<param name="Append" value="true" /> -->
+<!-- 		<param name="Encoding" value="UTF-8" /> -->
+<!-- 		<layout class="org.apache.log4j.PatternLayout"> -->
+<!-- 			<param name="ConversionPattern" value="%5p [%d{yyyy/MM/dd HH:mm:ss,SSS}] %t %c{1}.%M(line:%L): %m%n" /> -->
+<!-- 		</layout> -->
+<!-- 	</appender> -->
 	
 	<root>
 		<level value="${log4j.level}" />
 		<appender-ref ref="CONSOLE" />
-		<appender-ref ref="root" />
+<!-- 		<appender-ref ref="root" /> -->
 	</root>
 </log4j:configuration>

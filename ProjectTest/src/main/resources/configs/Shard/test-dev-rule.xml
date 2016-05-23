@@ -7,57 +7,52 @@
 		<property name="masterRule" ref="testRWRule" />
 		<property name="slaveRule" ref="testRWRule" />
 	</bean>
-	
+
 	<bean id="testRWRule" class="com.alipay.zdal.rule.config.beans.ShardRule">
 		<property name="tableRules">
 			<map>
-				<entry key="ACCMAINTX" value-ref="noTableRule" />
-				<entry key="ACCTXACTION" value-ref="noTableRule" />
-				<entry key="ACMTACIN" value-ref="noTableRule" />
-				<entry key="ACMSUMBAL" value-ref="noTableRule" />
-				<entry key="ACMTACBL" value-ref="noTableRule" />
-				<entry key="ACMTCDDT" value-ref="noTableRule" />
-				<entry key="ACCTXCHANGEFLOW" value-ref="noTableRule" />
-				<entry key="MAINTXSCANTEMP" value-ref="noTableRule" />
+				<entry key="user" value-ref="noTableRule" />
 			</map>
 		</property>
 	</bean>
-	
+
 	<bean id="usrTableRule" class="com.alipay.zdal.rule.config.beans.TableRule"
 		init-method="init">
-		<property name="tbSuffix" value="resetForEachDB:[_0000-_0001]"/>
-		<property name="dbIndexes" value="master_0"/>
+		<property name="tbSuffix" value="resetForEachDB:[_0000-_0001]" />
+		<property name="dbIndexes" value="dd_0,dd_1" />
 		<property name="dbRuleArray">
 			<list>
 				<value>
-					return com.jiedaibao.acmcore.dao.util.ShardRuleParser.parserDbIndexDev(#USR_NO#);
+					return
+					com.jiedaibao.acmcore.dao.util.ShardRuleParser.parserDbIndexLocal(#userName#);
 				</value>
 			</list>
 		</property>
 		<property name="tbRuleArray">
 			<list>
 				<value>
-					return com.jiedaibao.acmcore.dao.util.ShardRuleParser.parserTbIndexDev(#USR_NO#);
+					return
+					com.jiedaibao.acmcore.dao.util.ShardRuleParser.parserTbIndexLocal(#userName#);
 				</value>
 			</list>
 		</property>
 	</bean>
-	
+
 	<bean id="noTableRule" class="com.alipay.zdal.rule.config.beans.TableRule"
 		init-method="init">
-		<property name="tbSuffix" value="resetForEachDB:[_0000-_0001]"/>
-		<property name="dbIndexes" value="master_0"/>
+		<property name="tbSuffix" value="resetForEachDB:[_0000-_0009]" />
+		<property name="dbIndexes" value="master_0,dd_1" />
 		<property name="dbRuleArray">
 			<list>
 				<value>
-					0
+					return MoreResource.dao.util.ShardRuleParser.parserDbIndexLocal(#userName#);
 				</value>
 			</list>
 		</property>
 		<property name="tbRuleArray">
 			<list>
 				<value>
-					0
+					return MoreResource.dao.util.ShardRuleParser.parserTbIndexLocal(#userName#);
 				</value>
 			</list>
 		</property>

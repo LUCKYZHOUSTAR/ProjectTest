@@ -15,29 +15,28 @@
 
 	<mybatis:scan base-package="MoreResource.dao.**.mapper" />
 	<!-- 分库分表数据源 -->
-	<!-- <bean id="dataSource" class="com.alipay.zdal.client.jdbc.ZdalDataSource" -->
-	<!-- init-method="init"> -->
-	<!-- <property name="appName" value="ordercore" /> -->
-	<!-- <property name="appDsName" value="ShardDataSource" /> -->
-	<!-- <property name="dbmode" value="dev" /> -->
-	<!-- <property name="configPath" value="./configs/local/Shard" /> -->
-	<!-- </bean> -->
+	<bean id="dataSource" class="com.alipay.zdal.client.jdbc.ZdalDataSource"
+		init-method="init">
+		<property name="appName" value="test" />
+		<property name="appDsName" value="ShardDataSource" />
+		<property name="dbmode" value="dev" />
+		<property name="configPath" value="./configs/Shard" />
+	</bean>
 
 
 	<!-- SpringDataSource -->
-	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/test" />
-		<property name="username" value="root" />
-		<property name="password" value="" />
-	</bean>
+<!-- 	<bean id="dataSource" -->
+<!-- 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
+<!-- 		<property name="driverClassName" value="com.mysql.jdbc.Driver" /> -->
+<!-- 		<property name="url" value="jdbc:mysql://localhost:3306/test" /> -->
+<!-- 		<property name="username" value="root" /> -->
+<!-- 		<property name="password" value="123456" /> -->
+<!-- 	</bean> -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="typeAliasesPackage" value="com.jiedaibao.acmcore.dao.**.domain" />
 		<property name="mapperLocations" value="classpath*:MoreResource/dao/mapper/**/*.xml" />
 	</bean>
-
 
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate"
 		scope="prototype">

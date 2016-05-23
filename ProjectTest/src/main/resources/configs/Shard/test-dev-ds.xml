@@ -4,8 +4,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
 	default-autowire="byName">
 	
-	<bean id="ordercore" class="com.alipay.zdal.client.config.bean.ZdalAppBean">
-		<property name="appName" value="ordercore" />
+	<bean id="test" class="com.alipay.zdal.client.config.bean.ZdalAppBean">
+		<property name="appName" value="test" />
 		<property name="dbmode" value="dev" />
 		<property name="appDataSourceList">
 			<list>		
@@ -16,21 +16,44 @@
 	
 	<bean id="ShardDataSource" class="com.alipay.zdal.client.config.bean.AppDataSourceBean">
 		<property name="appDataSourceName" value="ShardDataSource" />
-		<property name="dataBaseType" value="ORACLE" />
+		<property name="dataBaseType" value="MYSQL" />
 		<property name="configType" value="SHARD" />
 		<property name="appRule" ref="testRule"/>
 		<property name="physicalDataSourceSet">
 			<set>
 				<ref bean="physics_00" />
+				<ref bean="physics_01" />
 			</set>
 		</property>
 	</bean>
-	
 	<bean id="physics_00" class="com.alipay.zdal.client.config.bean.PhysicalDataSourceBean">
 		<property name="name" value="master_0" />
-		<property name="jdbcUrl" value="jdbc:oracle:thin:@100.66.159.208:1521:orcl" />
-		<property name="userName" value="acmp2p" />
-		<property name="password" value="acmp2p" />
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/test" />
+		<property name="userName" value="root" />
+		<property name="password" value="123456" />
+		<property name="minConn" value="1" />
+		<property name="maxConn" value="10" />
+		<property name="blockingTimeoutMillis" value="180" />
+		<property name="idleTimeoutMinutes" value="180" />
+		<property name="preparedStatementCacheSize" value="100" />
+		<property name="queryTimeout" value="180" />
+		<property name="prefill" value="true" />
+		<property name="connectionProperties">
+			<map>
+				<entry key="connectTimeout" value="500" />
+				<entry key="autoReconnect" value="true" />
+				<entry key="initialTimeout" value="1" />
+				<entry key="maxReconnects" value="2" />
+				<entry key="socketTimeout" value="5000" />
+				<entry key="failOverReadOnly" value="false" />
+			</map>
+		</property>
+	</bean>
+	<bean id="physics_01" class="com.alipay.zdal.client.config.bean.PhysicalDataSourceBean">
+		<property name="name" value="dd_1" />
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/test" />
+		<property name="userName" value="root" />
+		<property name="password" value="123456" />
 		<property name="minConn" value="1" />
 		<property name="maxConn" value="10" />
 		<property name="blockingTimeoutMillis" value="180" />

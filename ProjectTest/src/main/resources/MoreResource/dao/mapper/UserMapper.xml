@@ -12,9 +12,21 @@
 	</sql>
 
 
-	<select id="queryUserList" resultMap="userResult">
+	<select id="queryUserList" resultMap="userResult" parameterType="String">
 		SELECT
 		<include refid="baseColumns" />
 		FROM user
 	</select>
+
+	<select id="queryUserByUserNo" resultMap="userResult"
+		parameterType="String">
+		SELECT
+		<include refid="baseColumns" />
+		FROM user where userName=#{userName}
+	</select>
+
+	<insert id="insertUser" parameterType="MoreResource.dao.domain.User">
+		insert into user(userName,password)
+		values(#{userName},#{password})
+	</insert>
 </mapper>
