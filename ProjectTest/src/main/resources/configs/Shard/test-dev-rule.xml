@@ -18,13 +18,13 @@
 
 	<bean id="usrTableRule" class="com.alipay.zdal.rule.config.beans.TableRule"
 		init-method="init">
-		<property name="tbSuffix" value="resetForEachDB:[_0000-_0001]" />
+		<property name="tbSuffix" value="resetForEachDB:[_0000-_0160]" />
 		<property name="dbIndexes" value="dd_0,dd_1" />
 		<property name="dbRuleArray">
 			<list>
 				<value>
 					return
-					com.jiedaibao.acmcore.dao.util.ShardRuleParser.parserDbIndexLocal(#userName#);
+					com.jiedaibao.acmcore.dao.util.ShardRuleParser.parserDbIndexLocal(#id#,#userName#);
 				</value>
 			</list>
 		</property>
@@ -32,7 +32,7 @@
 			<list>
 				<value>
 					return
-					com.jiedaibao.acmcore.dao.util.ShardRuleParser.parserTbIndexLocal(#userName#);
+					com.jiedaibao.acmcore.dao.util.ShardRuleParser.parserTbIndexLocal(#id#,#userName#);
 				</value>
 			</list>
 		</property>
@@ -41,18 +41,18 @@
 	<bean id="noTableRule" class="com.alipay.zdal.rule.config.beans.TableRule"
 		init-method="init">
 		<property name="tbSuffix" value="resetForEachDB:[_0000-_0009]" />
-		<property name="dbIndexes" value="master_0,dd_1" />
+		<property name="dbIndexes" value="dd_0,dd_1" />
 		<property name="dbRuleArray">
 			<list>
 				<value>
-					return MoreResource.dao.util.ShardRuleParser.parserDbIndexLocal(#userName#);
+					return MoreResource.dao.util.ShardRuleParser.parserDbIndexLocal(#id#,#userName#);
 				</value>
 			</list>
 		</property>
 		<property name="tbRuleArray">
 			<list>
 				<value>
-					return MoreResource.dao.util.ShardRuleParser.parserTbIndexLocal(#userName#);
+					return MoreResource.dao.util.ShardRuleParser.parserTbIndexLocal(#id#,#userName#);
 				</value>
 			</list>
 		</property>

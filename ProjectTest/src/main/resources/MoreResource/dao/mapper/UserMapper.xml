@@ -24,9 +24,22 @@
 		<include refid="baseColumns" />
 		FROM user where userName=#{userName}
 	</select>
+	
+	<select id="queryUserByUserName" resultMap="userResult"
+		parameterType="String">
+		SELECT
+		<include refid="baseColumns" />
+		FROM user where userName=#{userName} and id=#{id}
+	</select>
 
 	<insert id="insertUser" parameterType="MoreResource.dao.domain.User">
-		insert into user(userName,password)
-		values(#{userName},#{password})
+		insert into
+		user(id,userName,password)
+		values(#{id},#{password},#{password})
 	</insert>
+
+	<update id="updateUser" parameterType="MoreResource.dao.domain.User">
+		update user set
+		userName=#{userName},password=#{password} where id=#{id}
+	</update>
 </mapper>

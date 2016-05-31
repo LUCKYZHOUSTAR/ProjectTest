@@ -27,7 +27,7 @@
 		</property>
 	</bean>
 	<bean id="physics_00" class="com.alipay.zdal.client.config.bean.PhysicalDataSourceBean">
-		<property name="name" value="master_0" />
+		<property name="name" value="dd_0" />
 		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/test" />
 		<property name="userName" value="root" />
 		<property name="password" value="123456" />

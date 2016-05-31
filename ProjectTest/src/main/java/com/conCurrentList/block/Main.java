@@ -20,6 +20,7 @@ public class Main {
 	public static void main(String[] args) throws Exception {
 
 		// Create a ConcurrentLinkedDeque to work with it in the example
+	    //先进先出
 		LinkedBlockingDeque<String> list=new LinkedBlockingDeque<>(3);
 		
 		Client client=new Client(list);

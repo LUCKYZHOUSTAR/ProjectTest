@@ -12,8 +12,7 @@ import org.springframework.core.io.support.PropertiesLoaderUtils;
 * @ClassName: PropertiesLoaderUtils 
 * @Description: 
 * @author LUCKY
-* @date 2016年5月20日 下午3:47:53 
-*  
+* @date 2016年5月20日 下午3:47:53
 */
 public class PropertiesLoaderUtilsTest {
 

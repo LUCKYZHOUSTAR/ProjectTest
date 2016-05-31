@@ -3,6 +3,8 @@ package com.Concurrent.readWriteLock;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
+import com.alipay.zdal.datasource.resource.util.concurrent.ReentrantLock;
+
 /**
  * This class simulates the store of two prices. We will
  * have a writer that stores the prices and readers that 
@@ -20,6 +22,7 @@ public class PricesInfo {
 	/**
 	 * Lock to control the access to the prices
 	 */
+	
 	private ReadWriteLock lock;
 	
 	/**

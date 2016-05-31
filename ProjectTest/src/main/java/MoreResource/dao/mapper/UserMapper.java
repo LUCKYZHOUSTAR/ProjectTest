@@ -19,7 +19,11 @@ import MoreResource.dao.domain.User;
 public interface UserMapper {
 
     List<User> queryUserList();
-    
-    User queryUserByUserNo(@Param("userName") String userName);
+
+    List<User> queryUserByUserNo(@Param("userName") String userName);
+    List<User> queryUserByUserName(@Param("userName") String userName, @Param("id") String id);
     int insertUser(User user);
+
+    int updateUser(User user);
+
 }

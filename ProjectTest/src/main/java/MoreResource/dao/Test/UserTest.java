@@ -16,6 +16,7 @@ import com.alipay.zdal.client.ThreadLocalString;
 import com.alipay.zdal.client.jdbc.ZdalDataSource;
 import com.alipay.zdal.client.util.ThreadLocalMap;
 import com.alipay.zdal.client.util.condition.DBSelectorIDRouteCondition;
+import com.sun.security.auth.UserPrincipal;
 
 import MoreResource.dao.domain.User;
 import MoreResource.dao.mapper.UserMapper;
@@ -43,8 +44,8 @@ public class UserTest {
         ThreadLocalMap.put(ThreadLocalString.ROUTE_CONDITION, dbSelectorIDRouteCondition);
         List<User> users = userMapper.queryUserList();
         System.out.println(users.size());
-        User user = userMapper.queryUserByUserNo("0000");
-        System.out.println(user.getPassword());
+        List<User> user = userMapper.queryUserByUserNo("0000");
+        //        System.out.println(user.getPassword());
         User user2 = new User();
         user2.setPassword("90345345");
         user2.setUserName("009764434");
@@ -88,12 +89,12 @@ public class UserTest {
         DBSelectorIDRouteCondition dbSelectorIDRouteCondition = new DBSelectorIDRouteCondition(
             "user", "master_0", "user", "user_0000", "user_0001");
         ThreadLocalMap.put(ThreadLocalString.ROUTE_CONDITION, dbSelectorIDRouteCondition);
-        User user = userMapper.queryUserByUserNo("2345");
+        List<User> user = userMapper.queryUserByUserNo("2345");
         User user2 = new User();
         user2.setPassword("67");
         user2.setUserName("67");
         userMapper.insertUser(user2);
-        System.out.println(user.getPassword());
+        System.out.println();
 
         //        List<User> users = userMapper.queryUserList();
         //        System.out.println(users.size());
@@ -111,5 +112,66 @@ public class UserTest {
         user2.setPassword("67");
         user2.setUserName("67");
         userMapper.insertUser(user2);
+    }
+
+    @Test
+    public void updateTest() {
+        User user = new User();
+        user.setPassword("567");
+        user.setUserName("567");
+        int result = userMapper.insertUser(user);
+        System.out.println(result);
+    }
+
+    @Test
+    public void insertUserInfo() {
+        //插入的语句只能指定一次
+        //        DBSelectorIDRouteCondition dbSelectorIDRouteCondition = new DBSelectorIDRouteCondition(
+        //            "user", "dd_0", "user", "user_0000");
+        //如果指定了，就不走下面的sql匹配了
+        DBSelectorIDRouteCondition dbSelectorIDRouteCondition = new DBSelectorIDRouteCondition(
+            "user", "dd_0", "user_0001");
+        ThreadLocalMap.put(ThreadLocalString.ROUTE_CONDITION, dbSelectorIDRouteCondition);
+        User user = new User();
+        user.setId("67");
+        user.setPassword("17");
+        user.setUserName("17");
+        //Insert语句可以不指定DBSelectorIDRouteCondition dbSelectorIDRouteCondition需要查询的是那张表的操作
+        int result = userMapper.insertUser(user);
+        System.out.println(result);
+        //        List<User> users = userMapper.queryUserList();
+        //        System.out.println(users.size());
+    }
+
+    @Test
+    public void queryTest() {
+        //如果指定了的话，就是查询所有表的信息
+        //        DBSelectorIDRouteCondition dbSelectorIDRouteCondition = new DBSelectorIDRouteCondition(
+        //            "user", "dd_0", "user_0001", "user_0000");
+        //        ThreadLocalMap.put(ThreadLocalString.ROUTE_CONDITION, dbSelectorIDRouteCondition);
+        //        List<User> user = userMapper.queryUserByUserNo("17");
+        //        System.out.println(user.size());
+
+        //.parserTbIndexLocal(#id#,#userName#);如果后台指定了多个路由匹配规则的话，则都必须的赋值上才能通过，否则就通过指定的方式
+        /*
+         * 但是指定的时候指定多个数据源的话，会查询所有的操作
+         */
+        //
+        DBSelectorIDRouteCondition dbSelectorIDRouteCondition = new DBSelectorIDRouteCondition(
+            "user", "dd_0", "user_0001", "user_0000");
+        ThreadLocalMap.put(ThreadLocalString.ROUTE_CONDITION, dbSelectorIDRouteCondition);
+        List<User> users = userMapper.queryUserByUserName("17", "67");
+        System.out.println(users.size());
+    }
+
+    @Test
+    public void quertyUserInfoTest() {
+//        List<User> users = userMapper.queryUserByUserName("", "");
+//        users.size();
+        User user = new User();
+        user.setId("69");
+        user.setPassword("17");
+        user.setUserName("17");
+        userMapper.insertUser(user);
     }
 }

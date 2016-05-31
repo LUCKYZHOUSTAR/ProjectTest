@@ -6,8 +6,6 @@ package MoreResource.dao.util;
 
 import org.apache.commons.lang.StringUtils;
 
-
-
 /** 
 * @ClassName: ShardRuleParser 
 * @Description: 
@@ -19,7 +17,7 @@ public class ShardRuleParser {
 
     private static final int OUTUSRID_LENGTH = 32;
 
-    private static final int TABLE_PER_DB = 2;
+    private static final int TABLE_PER_DB    = 2;
 
     /**
      * 根据uid解析分库位.
@@ -27,7 +25,7 @@ public class ShardRuleParser {
      * @return
      */
     public static int parserDbIndex(String outusrid) {
-        int id  = getId(outusrid) / TABLE_PER_DB;
+        int id = getId(outusrid) / TABLE_PER_DB;
         return id;
     }
 
@@ -46,35 +44,39 @@ public class ShardRuleParser {
         if (StringUtils.isEmpty(userId)) {
             throw new IllegalArgumentException("ERROR ## the userId is null");
         }
-        int hashid =HashUtil.quickHash(userId.getBytes());
+        int hashid = HashUtil.quickHash(userId.getBytes());
         return hashid;
     }
 
     //================================================================================
 
-    public static int parserDbIndexLocal(String outusrid) {
-        return 1;
+    public static int parserDbIndexLocal(String id,String userName) {
+        return Integer.valueOf(userName) % 2;
     }
-    public static String parserTbIndexLocal(String outusrid) {
-        return "1";
+
+    public static String parserTbIndexLocal(String id,String userName) {
+
+        return String.valueOf(Integer.valueOf(userName) % 2);
     }
 
     public static int parserDbIndexBeta(String outusrid) {
-        int id  = quickHash(outusrid.getBytes(), 639) / 10;
+        int id = quickHash(outusrid.getBytes(), 639) / 10;
         return id;
     }
+
     public static String parserTbIndexBeta(String outusrid) {
-        int id  = quickHash(outusrid.getBytes(), 639);
+        int id = quickHash(outusrid.getBytes(), 639);
         String tbindex = String.valueOf(((id / 32) * 32) + (id % 32));
         return tbindex;
     }
 
     public static int parserDbIndexDev(String outusrid) {
-        int id  = quickHash(outusrid.getBytes(), 1) / 10;
+        int id = quickHash(outusrid.getBytes(), 1) / 10;
         return id;
     }
+
     public static String parserTbIndexDev(String outusrid) {
-        int id  = quickHash(outusrid.getBytes(), 1);
+        int id = quickHash(outusrid.getBytes(), 1);
         String tbindex = String.valueOf(((id / 11) * 11) + (id % 11));
         return tbindex;
     }
@@ -92,10 +94,11 @@ public class ShardRuleParser {
 
         return h & bound;
     }
-    
+
     public static void main(String[] args) {
-        String outusrid = "345345";
-        System.out.println(parserDbIndexLocal(outusrid));
-        System.out.println(parserTbIndexLocal(outusrid));
+//        System.out.println(5 % 2);
+//        String outusrid = "345345";
+//        System.out.println(parserDbIndexLocal(outusrid));
+//        System.out.println(parserTbIndexLocal(outusrid));
     }
 }

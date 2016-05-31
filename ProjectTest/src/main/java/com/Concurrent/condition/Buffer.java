@@ -75,6 +75,7 @@ public class Buffer {
 				 * 在该条件上挂起的线程将被唤醒，但这并不能保证他们挂起的条件已经被满足，所以需要
 				 * 在while中循环调用await，在条件成立之前不能离开这个循环的操作
 				 */
+			    
 				space.await();
 			}
 			buffer.offer(line);
