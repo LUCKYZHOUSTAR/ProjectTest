@@ -9,14 +9,12 @@ package com.basic;
  */
 class ExampleOne {
 
-    
-    private int dd;
-    //    private static ExampleOne exampleOne = new ExampleOne();
-//    private static ExampleOne exampleOne = new ExampleOne();
+    private int               dd;
+    //等会颠倒一下，有啥子区别
+    private static ExampleOne exampleOne = new ExampleOne();
     public static int         counter1;
     public static int         counter2   = 0;
-    private static ExampleOne exampleOne = new ExampleOne();
-
+    //private static ExampleOne exampleOne = new ExampleOne();
     private ExampleOne() {
         counter1++;
         counter2++;
