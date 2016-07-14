@@ -17,8 +17,6 @@ package test.callBack;
 public class Action {
 
     private CallBackInterface callBackInterface;
-
-    
     /**   
      * @return callBackInterface   
      */
